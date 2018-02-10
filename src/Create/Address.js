@@ -22,6 +22,14 @@ const SaveButton = styled.div`
   justify-content: center;
   align-items: center;
 `
+const LockedInput = styled.div`
+  display: flex;
+  width: 80%;
+  height: 80%;
+  align-items: center;
+  font-size: 12px;
+  padding-left: 5px;
+`
 
 class Address extends React.Component {
   static propTypes = {
@@ -37,20 +45,26 @@ class Address extends React.Component {
   }
 
   render() {
+    if (this.state.editing) {
+      return (
+        <Container>
+          <Input
+            value={ this.props.value }
+            disabled={ !this.state.editing }
+          />
+          <SaveButton
+            onClick={() => this.setState({editing: false})}
+          >
+            Save
+          </SaveButton>
+        </Container>
+      )
+    }
     return (
       <Container>
-        <Input
-          value={ this.props.value }
-          disabled={ !this.state.editing }
-        />
-        {
-          this.state.editing ?
-            <SaveButton
-              onClick={() => this.setState({editing: false})}
-            >
-              Save
-            </SaveButton> : ''
-        }
+        <LockedInput>
+          { this.props.value }
+        </LockedInput>
       </Container>
     )
   }
