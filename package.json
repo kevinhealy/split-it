@@ -2,6 +2,7 @@
   "name": "split-it",
   "version": "0.1.0",
   "private": true,
+  "homeage": "http://kevinmhealy.com/ethereum/split-it",
   "devDependencies": {
     "react-scripts": "1.1.1"
   },
