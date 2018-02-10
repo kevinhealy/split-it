@@ -6,9 +6,9 @@ import {
   NavLink,
 } from 'react-router-dom'
 
-import About from './About'
-import View from './View'
-import Create from './Create'
+import About from './About/'
+import View from './View/'
+import Create from './Create/'
 
 const Header = styled.header`
   display: flex;
