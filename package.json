@@ -2,7 +2,7 @@
   "name": "split-it",
   "version": "0.1.0",
   "private": true,
-  "homeage": "./",
+  "homepage": "./",
   "devDependencies": {
     "react-scripts": "1.1.1"
   },
