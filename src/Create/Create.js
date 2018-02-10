@@ -27,7 +27,7 @@ class Create extends Component {
         },
         {
           id: 'dfdgfdgdfg',
-          value: '42cg3tb345c52yv4t42 g3523'
+          value: '42cg3tb345c52yv4t42g3523'
         },
       ],
     }
