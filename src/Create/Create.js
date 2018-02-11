@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import shortid from 'shortid'
 
 import AddressesPane from './AddressesPane'
+import colors from '../styles/colors'
+
 
 const Container = styled.div`
   display: flex;
@@ -27,6 +29,7 @@ const TopArea = styled.div`
 `
 const AddressesArea = styled.div`
   display: flex;
+  color: ${colors.default_text}
 `
 const PublishButton = styled.div`
   display: flex;
@@ -34,9 +37,9 @@ const PublishButton = styled.div`
   justify-content: center;
   width: 20%;
   height: 75%;
-  background-color: blue;
-  color: white;
-  border: solid 1px black;
+  background-color: ${colors.button_background};
+  color: ${colors.button_content};
+  border: solid 1px ${colors.button_stroke};
   border-radius: 5px;
 `
 

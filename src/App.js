@@ -9,33 +9,39 @@ import {
 import About from './About/'
 import View from './View/'
 import Create from './Create/'
+import colors from './styles/colors'
 
 const Header = styled.header`
   display: flex;
   width: 100%;
   height: 50px;
-  background-color: blue;
+  background-color: ${colors.navbar_bg};
   justify-content: space-between;
+`
+const Title = styled.div`
+display: flex;
+flex: 1.5 0;
+font-size: 1.6em;
+color: white;
+align-items: center;
+margin-left: 10px;
 `
 const NavButtonContainer = styled.div`
   display: flex;
+  flex: 1 0;
 `
 const NavButton = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100px;
+  flex: 1 0;
   text-decoration: none;
-  color: black;
-`
-const Title = styled.div`
-  display: flex
-  color: white;
-  align-items:
+  color: ${colors.navbar_text};
 `
 const activeStyle = {
-  backgroundColor: 'red',
+  color: colors.navbar_selection_text,
+  backgroundColor: colors.navbar_selection_bg,
 }
 
 class App extends Component {
