@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import shortid from 'shortid'
 
 import AddressesPane from './AddressesPane'
 
@@ -21,24 +22,28 @@ class Create extends Component {
     super(props)
     this.state = {
       addresses: {
-        f982: {
-          address: ''
+        first: {
+          address: '',
         },
-        f98e2: {
-          address: ''
-        },
-        f9v82: {
-          address: ''
-        },
-        f98w2: {
-          address: ''
-        },
+        second: {
+          address: '',
+        }
       },
     }
   }
 
-  addAddress = () => {
-    console.log('addAddress')
+  getAddressCount = () => {
+    return Object.keys(this.state.addresses).length
+  }
+
+  handleAddAddress = () => {
+    if (this.getAddressCount() > 9) return
+    const id = shortid.generate()
+    const addresses = { ...this.state.addresses }
+    addresses[id] = {
+      address: ''
+    }
+    this.setState({ addresses })
   }
 
   saveAddress = (id, newAddr) => {
@@ -48,7 +53,7 @@ class Create extends Component {
   }
 
   handleDelete = (id) => {
-    if (Object.keys(this.state.addresses).length < 3) return
+    if (this.getAddressCount() < 3) return
     const addresses = { ...this.state.addresses }
     delete addresses[id]
     this.setState({ addresses })
@@ -63,7 +68,7 @@ class Create extends Component {
         <AddressesArea>
           <AddressesPane
             addresses={ this.state.addresses }
-            addAddress={ this.addAddress }
+            addAddress={ this.handleAddAddress }
             saveAddress={ this.saveAddress }
             handleDelete={ this.handleDelete }
           />

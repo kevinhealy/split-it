@@ -94,6 +94,7 @@ class Address extends React.Component {
         <Container>
           <Input
             defaultValue={ this.state.value }
+            placeholder="Input a valid ethereum address"
             disabled={ !this.state.editing }
             onChange={ e => this.setState({ value: e.target.value })}
           />
