@@ -24,9 +24,8 @@ const NavButton = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 95%;
+  height: 100%;
   width: 100px;
-  border: solid 1px red;
   text-decoration: none;
   color: black;
 `
