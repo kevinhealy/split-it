@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import deleteSvg from '../assets/delete.svg'
+import editSvg from '../assets/edit.svg'
+
 
 const Container = styled.div`
   display: flex;
@@ -30,6 +33,8 @@ const SaveButton = styled.div`
   align-items: center;
   border-radius: 5px;
   margin-right: 10px;
+  padding: 0 10px;
+  color: white;
 `
 const LockedInput = styled.div`
   display: flex;
@@ -40,7 +45,7 @@ const LockedInput = styled.div`
   padding-left: 5px;
 `
 const LockedButtonsContainer = styled.div`
-  flex: 1 0;
+  flex: 2 0;
   display: flex;
   height: 75%;
   justify-content: space-between;
@@ -115,12 +120,12 @@ class Address extends React.Component {
           <EditButton
             onClick={() => this.setState({editing: true})}
           >
-            <i className="material-icons">edit</i>
+            <img src={editSvg} />
           </EditButton>
           <DeleteButton
             onClick={() => this.props.handleDelete(this.props.id)}
           >
-            <i className="material-icons">delete</i>
+            <img src={deleteSvg} />
           </DeleteButton>
         </LockedButtonsContainer>
       </Container>

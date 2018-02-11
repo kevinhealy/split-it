@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Address from './Address'
 
 const Container = styled.div`
-  width: 100%;
+  flex: 1 0;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -13,10 +13,12 @@ const Container = styled.div`
 const AddButton = styled.div`
   width: 100%;
   background-color: blue;
-  height: 30px;
+  height: 50px;
+  font-size: 1.2em;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 `
 
 class AddressesPane extends React.Component {
@@ -29,7 +31,6 @@ class AddressesPane extends React.Component {
 
   renderAddresses = () => {
     const { addresses, saveAddress, handleDelete } = this.props
-    console.log(addresses)
     return Object.keys(addresses).map(id =>
       <Address
         key={ id }

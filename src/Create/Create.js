@@ -6,15 +6,38 @@ import AddressesPane from './AddressesPane'
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  width: 100%;
   height: 100%;
+`
+const PaddingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 5px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
 `
 const TopArea = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   height: 60px;
 `
 const AddressesArea = styled.div`
   display: flex;
+`
+const PublishButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 75%;
+  background-color: blue;
+  color: white;
+  border: solid 1px black;
+  border-radius: 5px;
 `
 
 class Create extends Component {
@@ -62,17 +85,20 @@ class Create extends Component {
   render() {
     return (
       <Container>
-        <TopArea>
-          Top Area
-        </TopArea>
-        <AddressesArea>
-          <AddressesPane
-            addresses={ this.state.addresses }
-            addAddress={ this.handleAddAddress }
-            saveAddress={ this.saveAddress }
-            handleDelete={ this.handleDelete }
-          />
-        </AddressesArea>
+        <PaddingContainer>
+          <TopArea>
+            Create a Split It Smart Contract
+            <PublishButton>Publish</PublishButton>
+          </TopArea>
+          <AddressesArea>
+            <AddressesPane
+              addresses={ this.state.addresses }
+              addAddress={ this.handleAddAddress }
+              saveAddress={ this.saveAddress }
+              handleDelete={ this.handleDelete }
+            />
+          </AddressesArea>
+        </PaddingContainer>
       </Container>
     );
   }
