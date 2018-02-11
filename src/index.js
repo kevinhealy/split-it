@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
-import './fonts/material-icons.css'
+import './styles/material-icons.css'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

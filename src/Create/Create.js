@@ -20,21 +20,38 @@ class Create extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      addresses: [
-        {
-          id: '3fws34gwe',
-          value: '42cg3tb345c52yv4t42 g3523'
+      addresses: {
+        f982: {
+          address: ''
         },
-        {
-          id: 'dfdgfdgdfg',
-          value: '42cg3tb345c52yv4t42g3523'
+        f98e2: {
+          address: ''
         },
-      ],
+        f9v82: {
+          address: ''
+        },
+        f98w2: {
+          address: ''
+        },
+      },
     }
   }
 
   addAddress = () => {
     console.log('addAddress')
+  }
+
+  saveAddress = (id, newAddr) => {
+    const addresses = { ...this.state.addresses }
+    addresses[id].address = newAddr
+    this.setState({ addresses })
+  }
+
+  handleDelete = (id) => {
+    if (Object.keys(this.state.addresses).length < 3) return
+    const addresses = { ...this.state.addresses }
+    delete addresses[id]
+    this.setState({ addresses })
   }
 
   render() {
@@ -45,8 +62,10 @@ class Create extends Component {
         </TopArea>
         <AddressesArea>
           <AddressesPane
-            addAddress={ this.addAddress }
             addresses={ this.state.addresses }
+            addAddress={ this.addAddress }
+            saveAddress={ this.saveAddress }
+            handleDelete={ this.handleDelete }
           />
         </AddressesArea>
       </Container>

@@ -22,15 +22,21 @@ const AddButton = styled.div`
 class AddressesPane extends React.Component {
   static propTypes = {
     addAddress: PropTypes.func.isRequired,
-    addresses: PropTypes.array.isRequired,
+    addresses: PropTypes.object.isRequired,
+    saveAddress: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
   }
 
   renderAddresses = () => {
-    return this.props.addresses.map(addr =>
+    const { addresses, saveAddress, handleDelete } = this.props
+    console.log(addresses)
+    return Object.keys(addresses).map(id =>
       <Address
-        key={addr.id}
-        id={addr.id}
-        value={addr.value}
+        key={ id }
+        id={ id }
+        value={ addresses[id].address }
+        saveAddress={ saveAddress }
+        handleDelete={ handleDelete }
       />
     )
   }
@@ -40,7 +46,7 @@ class AddressesPane extends React.Component {
     return (
       <Container>
         { this.renderAddresses() }
-        
+
         <AddButton
           onClick={ addAddress }
         >
