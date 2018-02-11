@@ -29,7 +29,7 @@ const TopArea = styled.div`
 `
 const AddressesArea = styled.div`
   display: flex;
-  color: ${colors.default_text}
+  color: ${colors.default_text};
 `
 const PublishButton = styled.div`
   display: flex;

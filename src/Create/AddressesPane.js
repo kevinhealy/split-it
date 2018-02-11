@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Address from './Address'
-import plusSvg from '../assets/add.svg'
+import AddSvg from '../icons/Add'
 import colors from '../styles/colors'
 
 const Container = styled.div`
@@ -65,7 +65,7 @@ class AddressesPane extends React.Component {
         <AddButton
           onClick={ addAddress }
         >
-          <img style={{height: '1.9em'}} src={plusSvg} alt="Add New Address"/>
+          <AddSvg />
         </AddButton>
       </Container>
     )

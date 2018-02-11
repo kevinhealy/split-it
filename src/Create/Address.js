@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import deleteSvg from '../assets/delete.svg'
-import editSvg from '../assets/edit.svg'
+import DeleteSvg from '../icons/Delete'
+import EditSvg from '../icons/Edit'
 import colors from '../styles/colors'
 
 
@@ -136,12 +136,12 @@ class Address extends React.Component {
             <EditButton
               onClick={() => this.setState({editing: true})}
             >
-              <img src={editSvg} alt="edit" />
+              <EditSvg />
             </EditButton>
             <DeleteButton
               onClick={() => this.props.handleDelete(this.props.id)}
             >
-              <img src={deleteSvg} alt="delete"/>
+              <DeleteSvg />
             </DeleteButton>
           </LockedButtonsContainer>
         </InnerContainer>
