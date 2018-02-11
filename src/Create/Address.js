@@ -21,6 +21,8 @@ const SaveButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
+  margin-right: 5px;
 `
 const LockedInput = styled.div`
   display: flex;
@@ -29,6 +31,28 @@ const LockedInput = styled.div`
   align-items: center;
   font-size: 12px;
   padding-left: 5px;
+`
+const LockedButtonsContainer = styled.div`
+  flex: 1 1;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid blue;
+`
+const EditButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 5px
+`
+const DeleteButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 5px
 `
 
 class Address extends React.Component {
@@ -41,6 +65,7 @@ class Address extends React.Component {
     super(props)
     this.state = {
       editing: true,
+      value: this.props.value,
     }
   }
 
@@ -49,7 +74,7 @@ class Address extends React.Component {
       return (
         <Container>
           <Input
-            value={ this.props.value }
+            defaultValue={ this.props.value }
             disabled={ !this.state.editing }
           />
           <SaveButton
@@ -65,6 +90,14 @@ class Address extends React.Component {
         <LockedInput>
           { this.props.value }
         </LockedInput>
+        <LockedButtonsContainer>
+          <EditButton>
+            <i className="material-icons">edit</i>
+          </EditButton>
+          <DeleteButton>
+            <i className="material-icons">delete</i>
+          </DeleteButton>
+        </LockedButtonsContainer>
       </Container>
     )
   }
