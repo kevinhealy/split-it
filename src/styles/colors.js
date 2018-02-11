@@ -17,7 +17,7 @@ export default {
 	button_content: '#FFFFFF',
 
 	delete_button_background: '#E52A2A',
-	delete_button_stroke: '#E52A2A',
+	delete_button_stroke: '#690800',
 	delete_button_content: '#FFFFFF',
 
 	footer_bg: '#2B2D42',

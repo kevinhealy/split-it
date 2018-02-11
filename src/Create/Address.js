@@ -9,7 +9,7 @@ import colors from '../styles/colors'
 
 const Container = styled.div`
   display: flex;
-  height: 50px;
+  height: 80px;
   width: 100%;
   align-items: center;
   background-color: ${
@@ -106,7 +106,6 @@ class Address extends React.Component {
   }
 
   render() {
-    console.log(this.props.isDark)
     if (this.state.editing) {
       return (
         <Container isdark={ this.props.isDark }>

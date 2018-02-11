@@ -22,6 +22,7 @@ const PaddingContainer = styled.div`
 `
 const TopArea = styled.div`
   display: flex;
+  font-size: 1.2em;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
