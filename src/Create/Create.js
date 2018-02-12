@@ -67,7 +67,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isConnected: false,
+      isConnected: true,
       addresses: {
         first: {
           address: '',
@@ -79,13 +79,27 @@ class Create extends Component {
     }
   }
 
+  componentWillMount() {
+    const { web3 } = this.props
+    if (web3) {
+      web3.eth.getAccounts((err, accs) => {
+        if (!err && accs.length)
+          this.setState({ isConnected: true })
+        else this.setState({isConnected: false})
+        console.log('accs:', accs)
+      })
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     const { web3 } = nextProps
-    console.log('receivinng')
     if (web3) {
-      web3.eth.getAccounts(accs => console.log('accs:', accs))
-    //   if ()
-    //     this.setState({ isConnected: true })
+      web3.eth.getAccounts((err, accs) => {
+        if (!err && accs.length)
+          this.setState({ isConnected: true })
+        else this.setState({isConnected: false})
+        console.log('accs:', accs)
+      })
     }
   }
 

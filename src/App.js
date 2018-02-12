@@ -19,14 +19,15 @@ const Header = styled.header`
   background-color: ${colors.navbar_bg};
   justify-content: space-between;
 `
-const Title = styled.div`
-display: flex;
-flex: 1.5 0;
-font-weight: 600;
-font-size: 1.6em;
-color: white;
-align-items: center;
-margin-left: 10px;
+const Title = styled(NavLink)`
+  display: flex;
+  flex: 1.5 0;
+  font-weight: 600;
+  font-size: 1.6em;
+  color: white;
+  align-items: center;
+  margin-left: 10px;
+  text-decoration: none;
 `
 const NavButtonContainer = styled.div`
   display: flex;
@@ -71,7 +72,12 @@ class App extends Component {
       <Router>
         <div>
           <Header>
-            <Title>Split It</Title>
+            <Title
+              exact
+              to="/"
+            >
+              Split It
+            </Title>
             <NavButtonContainer>
               <NavButton
                 exact
