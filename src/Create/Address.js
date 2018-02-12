@@ -9,7 +9,7 @@ import colors from '../styles/colors'
 
 const Container = styled.div`
   display: flex;
-  height: 80px;
+  height: 65px;
   width: 100%;
   align-items: center;
   background-color: ${
@@ -17,7 +17,7 @@ const Container = styled.div`
   };
 `
 const InnerContainer = styled.div`
-  height: 50px;
+  height: 100%;
   width: 100%;
   align-items: center;
   padding: 0 10px;

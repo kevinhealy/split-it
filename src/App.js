@@ -5,6 +5,7 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom'
+import getWeb3 from './utils/getWeb3'
 
 import About from './About/'
 import View from './View/'
@@ -21,6 +22,7 @@ const Header = styled.header`
 const Title = styled.div`
 display: flex;
 flex: 1.5 0;
+font-weight: 600;
 font-size: 1.6em;
 color: white;
 align-items: center;
@@ -45,6 +47,25 @@ const activeStyle = {
 }
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      web3: null,
+    }
+  }
+
+  componentWillMount() {
+    getWeb3
+    .then(results => {
+      this.setState({ web3: results.web3 })
+    })
+    .catch(() => {
+      console.log('Error finding web3.')
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -69,7 +90,7 @@ class App extends Component {
             </NavButtonContainer>
           </Header>
           <Route exact path="/" component={About}/>
-          <Route path="/create" component={Create}/>
+          <Route path="/create" render={() => <Create web3={this.state.web3} />}/>
           <Route path="/view" component={View}/>
         </div>
       </Router>

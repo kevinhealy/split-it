@@ -15,6 +15,8 @@ export default {
 	button_background: '#6FBCF6',
 	button_stroke: '#326E9C',
 	button_content: '#FFFFFF',
+	button_disabled_bg: '#8C8C8C',
+	button_disabled_stroke: '#6C6C6C',
 
 	delete_button_background: '#E52A2A',
 	delete_button_stroke: '#690800',

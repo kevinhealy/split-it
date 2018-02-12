@@ -5,7 +5,6 @@ import shortid from 'shortid'
 import AddressesPane from './AddressesPane'
 import colors from '../styles/colors'
 
-
 const Container = styled.div`
   display: flex;
   width: 100%;
@@ -18,7 +17,6 @@ const PaddingContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-
 `
 const TopArea = styled.div`
   display: flex;
@@ -35,19 +33,41 @@ const AddressesArea = styled.div`
 const PublishButton = styled.div`
   display: flex;
   align-items: center;
+  align-self: center;
   justify-content: center;
   width: 20%;
-  height: 75%;
+  height: 60%;
   background-color: ${colors.button_background};
   color: ${colors.button_content};
   border: solid 1px ${colors.button_stroke};
   border-radius: 5px;
+  font-size: .9em;
+`
+const Title = styled.div`
+  display: flex;
+  font-size: 1.15em;
+  font-weight: 600;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  color: ${colors.default_text}
+`
+const NotConnectedPane = styled.div`
+  height: 70px;
+  flex: 1 0;
+  background-color: yellow;
 `
 
 class Create extends Component {
+  static propTypes = {
+
+  }
+
   constructor(props) {
     super(props)
     this.state = {
+      isConnected: false,
       addresses: {
         first: {
           address: '',
@@ -56,6 +76,16 @@ class Create extends Component {
           address: '',
         }
       },
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { web3 } = nextProps
+    console.log('receivinng')
+    if (web3) {
+      web3.eth.getAccounts(accs => console.log('accs:', accs))
+    //   if ()
+    //     this.setState({ isConnected: true })
     }
   }
 
@@ -87,11 +117,16 @@ class Create extends Component {
   }
 
   render() {
+    console.log('props:', this.props)
+    console.log('state:', this.state)
     return (
       <Container>
         <PaddingContainer>
+          {
+            !this.state.isConnected ? <NotConnectedPane /> : ''
+          }
           <TopArea>
-            Create a Split It Smart Contract
+            <Title>Create Split It Contract</Title>
             <PublishButton>Publish</PublishButton>
           </TopArea>
           <AddressesArea>
