@@ -37,7 +37,11 @@ const PublishButton = styled.div`
   justify-content: center;
   width: 20%;
   height: 60%;
-  background-color: ${colors.button_background};
+  background-color: ${
+    props => props.disabled ?
+      colors.button_disabled_bg :
+      colors.button_background
+  };
   color: ${colors.button_content};
   border: solid 1px ${colors.button_stroke};
   border-radius: 5px;
@@ -67,7 +71,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isConnected: true,
+      isConnected: false,
       addresses: {
         first: {
           address: '',
@@ -76,18 +80,6 @@ class Create extends Component {
           address: '',
         }
       },
-    }
-  }
-
-  componentWillMount() {
-    const { web3 } = this.props
-    if (web3) {
-      web3.eth.getAccounts((err, accs) => {
-        if (!err && accs.length)
-          this.setState({ isConnected: true })
-        else this.setState({isConnected: false})
-        console.log('accs:', accs)
-      })
     }
   }
 
@@ -131,17 +123,23 @@ class Create extends Component {
   }
 
   render() {
-    console.log('props:', this.props)
-    console.log('state:', this.state)
     return (
       <Container>
         <PaddingContainer>
           {
-            !this.state.isConnected ? <NotConnectedPane /> : ''
+            !this.state.isConnected ?
+            <NotConnectedPane>
+
+            </NotConnectedPane> :
+            ''
           }
           <TopArea>
             <Title>Create Split It Contract</Title>
-            <PublishButton>Publish</PublishButton>
+            <PublishButton
+              disabled={ !this.state.isConnected }
+            >
+              Publish
+            </PublishButton>
           </TopArea>
           <AddressesArea>
             <AddressesPane

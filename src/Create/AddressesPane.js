@@ -18,7 +18,13 @@ const AddressesContainer = styled.div`
   border-bottom: none;
 `
 const AddButton = styled.div`
-  background-color: ${colors.button_background};
+  background-color: ${
+    props => {
+      return props.disabled ?
+      colors.button_disabled_bg :
+      colors.button_background
+    }
+  };
   height: 50px;
   font-size: 1.2em;
   display: flex;
@@ -56,7 +62,8 @@ class AddressesPane extends React.Component {
   }
 
   render() {
-    const { addAddress } = this.props
+    const { addAddress, addresses } = this.props
+    const addressCount = Object.keys(addresses).length
     return (
       <Container>
         <AddressesContainer>
@@ -64,6 +71,7 @@ class AddressesPane extends React.Component {
         </AddressesContainer>
         <AddButton
           onClick={ addAddress }
+          disabled={ addressCount > 9 }
         >
           <AddSvg />
         </AddButton>
