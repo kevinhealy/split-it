@@ -9,9 +9,9 @@ import colors from '../styles/colors'
 const Container = styled.div`
   flex: 1 0;
   display: flex;
+  max-width: 100%;
   flex-direction: column;
   border-radius: 5px;
-  overflow: hidden;
 `
 const AddressesContainer = styled.div`
   border: 1px solid ${colors.address_bg_dark};

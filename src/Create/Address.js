@@ -18,11 +18,11 @@ const Container = styled.div`
 `
 const InnerContainer = styled.div`
   height: 100%;
-  width: 100%;
   align-items: center;
   padding: 0 10px;
   display: flex;
   justify-content: space-around;
+  width: 100%;
 `
 const Input = styled.input`
   flex: 4 0;
@@ -33,6 +33,11 @@ const Input = styled.input`
   border: 1px solid gray;
   ${'' /* border: 1px solid ${colors.default_text}; */}
 `
+const ButtonContainer = styled.div`
+  flex: 0 0;
+  border: 1px solid green;
+`
+
 const SaveButton = styled.div`
   display: flex;
   flex: 1 0;
@@ -55,6 +60,13 @@ const LockedInput = styled.div`
   color: ${colors.default_text};
   font-size: 13px;
   padding-left: 5px;
+  border: 1px solid red;
+`
+const LockedInputText = styled.div`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 70%;
+  border: 1px solid blue;
 `
 const LockedButtonsContainer = styled.div`
   flex: 2 0;
@@ -116,11 +128,13 @@ class Address extends React.Component {
               disabled={ !this.state.editing }
               onChange={ e => this.setState({ value: e.target.value })}
             />
-            <SaveButton
-              onClick={ this.handleSave }
-            >
-              Save
-            </SaveButton>
+            <ButtonContainer>
+              <SaveButton
+                onClick={ this.handleSave }
+              >
+                Save
+              </SaveButton>
+            </ButtonContainer>
           </InnerContainer>
         </Container>
       )
@@ -128,10 +142,10 @@ class Address extends React.Component {
     return (
       <Container isdark={ this.props.isDark }>
         <InnerContainer>
-          <LockedInput>
-            { this.props.value }
-          </LockedInput>
-          <LockedButtonsContainer>
+          <ButtonContainer>
+            <LockedInput>
+              <LockedInputText>{ this.props.value }</LockedInputText>
+            </LockedInput>
             <EditButton
               onClick={() => this.setState({editing: true})}
             >
@@ -142,7 +156,7 @@ class Address extends React.Component {
             >
               <DeleteSvg />
             </DeleteButton>
-          </LockedButtonsContainer>
+          </ButtonContainer>
         </InnerContainer>
       </Container>
     )
