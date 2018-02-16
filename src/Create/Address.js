@@ -19,13 +19,19 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   height: 100%;
   align-items: center;
-  padding: 0 10px;
   display: flex;
+  margin: 5px;
   justify-content: space-around;
   width: 100%;
 `
+const InputContainer = styled.div`
+  flex: 5 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+`
 const Input = styled.input`
-  flex: 4 0;
+  width: 100%;
   height: 60%;
   font-size: 13px;
   border-radius: 5px 0 0 5px;
@@ -34,14 +40,15 @@ const Input = styled.input`
   ${'' /* border: 1px solid ${colors.default_text}; */}
 `
 const ButtonContainer = styled.div`
-  flex: 0 0;
-  border: 1px solid green;
+  flex: 1 0;
+  display: flex;
+  height: 60%;
+  align-items: center;
 `
-
 const SaveButton = styled.div`
   display: flex;
   flex: 1 0;
-  height: 60%;
+  height: 100%;
   background-color: ${colors.button_background};
   justify-content: center;
   align-items: center;
@@ -53,31 +60,25 @@ const SaveButton = styled.div`
 `
 const LockedInput = styled.div`
   display: flex;
-  flex: 6 0;
+  min-width: 72vw;
+  max-width: 74vw;
+  width: 75vw;
   height: 80%;
-  font-size: 1.2em;
   align-items: center;
   color: ${colors.default_text};
   font-size: 13px;
   padding-left: 5px;
-  border: 1px solid red;
 `
 const LockedInputText = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 70%;
-  border: 1px solid blue;
-`
-const LockedButtonsContainer = styled.div`
-  flex: 2 0;
-  display: flex;
-  height: 75%;
-  justify-content: space-between;
-  align-items: stretch;
+  color: grey;
+  font-size: 1.2em;
 `
 const EditButton = styled.div`
   display: flex;
   flex: 1 0;
+  height: 100%;
   align-items: center;
   justify-content: center;
   background-color: ${colors.button_background};
@@ -88,6 +89,7 @@ const EditButton = styled.div`
 const DeleteButton = styled.div`
   display: flex;
   flex: 1 0;
+  height: 100%;
   align-items: center;
   justify-content: center;
   background-color: ${colors.delete_button_background};
@@ -122,12 +124,14 @@ class Address extends React.Component {
       return (
         <Container isdark={ this.props.isDark }>
           <InnerContainer>
-            <Input
-              defaultValue={ this.state.value }
-              placeholder="Input a valid ethereum address"
-              disabled={ !this.state.editing }
-              onChange={ e => this.setState({ value: e.target.value })}
-            />
+            <InputContainer>
+              <Input
+                defaultValue={ this.state.value }
+                placeholder="Input a valid ethereum address"
+                disabled={ !this.state.editing }
+                onChange={ e => this.setState({ value: e.target.value })}
+              />
+            </InputContainer>
             <ButtonContainer>
               <SaveButton
                 onClick={ this.handleSave }
@@ -142,10 +146,10 @@ class Address extends React.Component {
     return (
       <Container isdark={ this.props.isDark }>
         <InnerContainer>
+          <LockedInput>
+            <LockedInputText>{ this.props.value }</LockedInputText>
+          </LockedInput>
           <ButtonContainer>
-            <LockedInput>
-              <LockedInputText>{ this.props.value }</LockedInputText>
-            </LockedInput>
             <EditButton
               onClick={() => this.setState({editing: true})}
             >

@@ -13,13 +13,14 @@ const Container = styled.div`
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 5px;
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   display: flex;
 `
 const TopArea = styled.div`
   display: flex;
+  width: 95vw;
   font-size: 1.2em;
   flex-direction: row;
   align-items: center;
@@ -28,6 +29,7 @@ const TopArea = styled.div`
 `
 const AddressesArea = styled.div`
   display: flex;
+  width: 95vw;
   color: ${colors.default_text};
 `
 const PublishButton = styled.div`
@@ -59,8 +61,11 @@ const Title = styled.div`
 `
 const NotConnectedPane = styled.div`
   height: 70px;
-  flex: 1 0;
-  background-color: yellow;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
 `
 
 class Create extends Component {
@@ -128,10 +133,10 @@ class Create extends Component {
         <PaddingContainer>
           {
             !this.state.isConnected ?
-            <NotConnectedPane>
-
-            </NotConnectedPane> :
-            ''
+              <NotConnectedPane>
+                Not Connected to the Ethereum Network
+              </NotConnectedPane> :
+              ''
           }
           <TopArea>
             <Title>Create Split It Contract</Title>
