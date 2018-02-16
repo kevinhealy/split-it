@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import shortid from 'shortid'
 
 import AddressesPane from './AddressesPane'
 import colors from '../styles/colors'
+import Splitit from '../utils/splitit'
 
 const Container = styled.div`
   display: flex;
@@ -30,6 +32,8 @@ const TopArea = styled.div`
 const AddressesArea = styled.div`
   display: flex;
   width: 95vw;
+  border-radius: 5px;
+  overflow: hidden;
   color: ${colors.default_text};
 `
 const PublishButton = styled.div`
@@ -70,13 +74,16 @@ const NotConnectedPane = styled.div`
 
 class Create extends Component {
   static propTypes = {
-
+    web3: PropTypes.object,
+    isConnected: PropTypes.bool.isRequired,
+  }
+  static defaultProps = {
+    web3: {},
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      isConnected: false,
       addresses: {
         first: {
           address: '',
@@ -85,18 +92,6 @@ class Create extends Component {
           address: '',
         }
       },
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { web3 } = nextProps
-    if (web3) {
-      web3.eth.getAccounts((err, accs) => {
-        if (!err && accs.length)
-          this.setState({ isConnected: true })
-        else this.setState({isConnected: false})
-        console.log('accs:', accs)
-      })
     }
   }
 
@@ -112,6 +107,12 @@ class Create extends Component {
       address: ''
     }
     this.setState({ addresses })
+  }
+
+  handlePublish = () => {
+    if (!this.props.isConnected) return
+    this.splitit = new Splitit(this.props.web3, this.state.addresses)
+    this.splitit.initPublish()
   }
 
   saveAddress = (id, newAddr) => {
@@ -132,7 +133,7 @@ class Create extends Component {
       <Container>
         <PaddingContainer>
           {
-            !this.state.isConnected ?
+            !this.props.isConnected ?
               <NotConnectedPane>
                 Not Connected to the Ethereum Network
               </NotConnectedPane> :
@@ -141,7 +142,8 @@ class Create extends Component {
           <TopArea>
             <Title>Create Split It Contract</Title>
             <PublishButton
-              disabled={ !this.state.isConnected }
+              disabled={ !this.props.isConnected }
+              onClick={ this.handlePublish }
             >
               Publish
             </PublishButton>

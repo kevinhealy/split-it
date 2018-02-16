@@ -53,17 +53,32 @@ class App extends Component {
     super(props)
 
     this.state = {
-      web3: null,
+      web3: {},
+      isConnected: false,
     }
+
+    this.connectToNetwork().then(() => console.log('Connected:', this.state))
   }
 
-  componentWillMount() {
-    getWeb3
-    .then(results => {
-      this.setState({ web3: results.web3 })
-    })
-    .catch(() => {
-      console.log('Error finding web3.')
+  connectToNetwork = () => {
+    return new Promise((resolve, reject) => {
+      const interval = window.setInterval(async () => {
+        const results = await getWeb3
+        if (!results) return console.error('Error finding web3.')
+        const { web3 } = results
+        const app = this
+        web3.eth.getAccounts((err, accs) => {
+          if (!err && accs.length) {
+            clearInterval(interval)
+            app.setState({
+              web3,
+              isConnected: true,
+              currentAccount: accs[0]
+            })
+            resolve()
+          }
+        })
+      }, 100)
     })
   }
 
@@ -96,7 +111,12 @@ class App extends Component {
             </NavButtonContainer>
           </Header>
           <Route exact path="/" component={About}/>
-          <Route path="/create" render={() => <Create web3={this.state.web3} />}/>
+          <Route path="/create" render={() =>
+            <Create
+              web3={this.state.web3}
+              isConnected={this.state.isConnected}
+            />
+          }/>
           <Route path="/view" component={View}/>
         </div>
       </Router>

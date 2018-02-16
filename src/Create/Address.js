@@ -37,7 +37,6 @@ const Input = styled.input`
   border-radius: 5px 0 0 5px;
   padding: 0 5px;
   border: 1px solid gray;
-  ${'' /* border: 1px solid ${colors.default_text}; */}
 `
 const ButtonContainer = styled.div`
   flex: 1 0;
@@ -60,8 +59,6 @@ const SaveButton = styled.div`
 `
 const LockedInput = styled.div`
   display: flex;
-  min-width: 72vw;
-  max-width: 74vw;
   width: 75vw;
   height: 80%;
   align-items: center;
