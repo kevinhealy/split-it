@@ -20,7 +20,7 @@ const PaddingContainer = styled.div`
 `
 const TopArea = styled.div`
   display: flex;
-  width: 95vw;
+  width: 95%;
   font-size: 1.2em;
   flex-direction: row;
   align-items: center;
@@ -29,7 +29,7 @@ const TopArea = styled.div`
 `
 const AddressesArea = styled.div`
   display: flex;
-  width: 95vw;
+  width: 95%;
   border-radius: 5px;
   overflow: hidden;
   color: ${colors.default_text};
