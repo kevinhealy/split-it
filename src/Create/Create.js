@@ -61,7 +61,7 @@ const Title = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  color: ${colors.default_text}
+  color: white;
 `
 const NotConnectedPane = styled.div`
   height: 70px;

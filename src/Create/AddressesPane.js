@@ -32,7 +32,7 @@ const AddButton = styled.div`
   align-items: center;
   color: white;
   border-radius: 0 0 5px 5px;
-  border: solid 1px ${colors.button_stroke};
+  ${'' /* border: solid 1px ${colors.button_stroke}; */}
 `
 
 class AddressesPane extends React.Component {
