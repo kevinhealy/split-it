@@ -12,10 +12,19 @@ import View from './View/'
 import Create from './Create/'
 import colors from './styles/colors'
 
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`
+const RoutesContainer = styled.div`
+  flex: 13 0;
+  display: flex;
+`
 const Header = styled.header`
   display: flex;
+  flex: 1 0;
   width: 100%;
-  height: 50px;
   background-color: ${colors.navbar_bg};
   justify-content: space-between;
 `
@@ -85,7 +94,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <AppContainer>
           <Header>
             <Title
               exact
@@ -110,15 +119,17 @@ class App extends Component {
               </NavButton>
             </NavButtonContainer>
           </Header>
-          <Route exact path="/" component={About}/>
-          <Route path="/create" render={() =>
-            <Create
-              web3={this.state.web3}
-              isConnected={this.state.isConnected}
-            />
-          }/>
-          <Route path="/view" component={View}/>
-        </div>
+          <RoutesContainer>
+            <Route exact path="/" component={About}/>
+            <Route path="/create" render={() =>
+              <Create
+                web3={this.state.web3}
+                isConnected={this.state.isConnected}
+              />
+            }/>
+            <Route path="/view" component={View}/>
+          </RoutesContainer>
+        </AppContainer>
       </Router>
     );
   }
