@@ -13,7 +13,7 @@ const Container = styled.div`
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 99%;
   flex: 1 0;
   align-items: center;
   justify-content: center;

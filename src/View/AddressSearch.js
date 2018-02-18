@@ -36,7 +36,6 @@ const LockedInput = styled.div`
   width: 70vw;
   height: 100%;
   align-items: center;
-  ${'' /* justify-content: center; */}
   color: ${colors.default_text};
   font-size: 13px;
 `

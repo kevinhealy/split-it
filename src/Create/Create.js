@@ -10,26 +10,28 @@ import Splitit from '../utils/splitit'
 const Container = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
 `
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 95%;
   display: flex;
 `
 const TopArea = styled.div`
   display: flex;
-  width: 95%;
+  width: 100%;
+  flex: 1 0;
   font-size: 1.2em;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
 `
 const AddressesArea = styled.div`
+  flex: 12 0;
   display: flex;
-  width: 95%;
+  width: 100%;
   border-radius: 5px;
   overflow: hidden;
   color: ${colors.default_text};
