@@ -16,7 +16,7 @@ const PaddingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60%;
+  height: 70%;
 `
 const InputContainer = styled.div`
   flex: 4 0;
