@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import AddressSearch from './AddressSearch'
+
 const Container = styled.div`
   display: flex;
   flex: 1 0;
@@ -12,7 +14,6 @@ const TitleContainer = styled.div`
   flex: 1 0;
 `
 const SearchInputContainer = styled.div`
-  height: 8px;
   border: 1px solid red;
   flex: 1 0;
 `
@@ -39,7 +40,7 @@ class View extends Component {
           <Title>View Split It Contract</Title>
         </TitleContainer>
         <SearchInputContainer>
-
+          <AddressSearch />
         </SearchInputContainer>
         <ViewArea>
 
