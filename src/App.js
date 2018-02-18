@@ -65,6 +65,7 @@ class App extends Component {
     this.state = {
       web3: {},
       isConnected: false,
+      currentAccount: '',
     }
 
     this.connectToNetwork().then(() => console.log('Connected:', this.state))
@@ -126,12 +127,14 @@ class App extends Component {
               <Create
                 web3={this.state.web3}
                 isConnected={this.state.isConnected}
+                currentAccount={this.state.currentAccount}
               />
             }/>
             <Route path="/view" render={() =>
               <View
                 web3={this.state.web3}
                 isConnected={this.state.isConnected}
+                currentAccount={this.state.currentAccount}
               />
             }/>
           </RoutesContainer>

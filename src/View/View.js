@@ -18,12 +18,19 @@ const PaddingContainer = styled.div`
   align-items: center;
   justify-content: center;
 `
+const NotConnectedPane = styled.div`
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+`
 const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   flex: 1 0;
   width: 100%;
-  border: 1px solid green;
 `
 const Title = styled.div`
   display: flex;
@@ -37,17 +44,18 @@ const Title = styled.div`
 `
 const ViewArea = styled.div`
   display: flex;
-  flex: 11 0;
+  flex: 12 0;
   width: 100%;
-  border: 1px solid blue;
 `
 class View extends Component {
   static propTypes = {
     web3: PropTypes.object,
     isConnected: PropTypes.bool.isRequired,
+    currentAccount: PropTypes.string
   }
   static defaultProps = {
-    web3: {}
+    web3: {},
+    currentAccount: '',
   }
 
   constructor(props) {
@@ -62,17 +70,34 @@ class View extends Component {
   }
 
   handleSearch = (targetAddress) => {
-
+    this.setState({
+      isSearching: true,
+    })
+    this.setState({
+      isSearching: false,
+      searchSuccessful: true,
+      targetContractAddress: targetAddress,
+    })
   }
 
   render() {
     return (
       <Container>
         <PaddingContainer>
+          {
+            !this.props.isConnected ?
+              <NotConnectedPane>
+                Not Connected to the Ethereum Network
+              </NotConnectedPane> : ''
+          }
           <TitleContainer>
             <Title>View Split It Contract</Title>
           </TitleContainer>
-          <AddressSearch />
+          <AddressSearch
+            isSearching={this.state.isSearching}
+            searchSuccessful={this.state.searchSuccessful}
+            handleSearch={this.handleSearch}
+          />
           <ViewArea>
 
           </ViewArea>
