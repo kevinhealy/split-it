@@ -7,15 +7,22 @@ const Container = styled.div`
   display: flex;
   flex: 1 0;
   flex-direction: column;
+  align-items: center;
+`
+const PaddingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  flex: 1 0;
+  align-items: center;
+  justify-content: center;
 `
 const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   flex: 1 0;
-`
-const SearchInputContainer = styled.div`
-  border: 1px solid red;
-  flex: 1 0;
+  width: 100%;
+  border: 1px solid green;
 `
 const Title = styled.div`
   display: flex;
@@ -30,21 +37,22 @@ const Title = styled.div`
 const ViewArea = styled.div`
   display: flex;
   flex: 11 0;
+  width: 100%;
   border: 1px solid blue;
 `
 class View extends Component {
   render() {
     return (
       <Container>
-        <TitleContainer>
-          <Title>View Split It Contract</Title>
-        </TitleContainer>
-        <SearchInputContainer>
+        <PaddingContainer>
+          <TitleContainer>
+            <Title>View Split It Contract</Title>
+          </TitleContainer>
           <AddressSearch />
-        </SearchInputContainer>
-        <ViewArea>
+          <ViewArea>
 
-        </ViewArea>
+          </ViewArea>
+        </PaddingContainer>
       </Container>
     );
   }
