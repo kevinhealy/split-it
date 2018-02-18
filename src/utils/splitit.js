@@ -4,7 +4,6 @@
 class Splitit {
   constructor(web3, addresses) {
     this.web3 = web3
-    this.addresses = addresses
   }
 
   initPublish = () => {
@@ -13,6 +12,8 @@ class Splitit {
 
     })
   }
+
+  find
 }
 
 export default Splitit
