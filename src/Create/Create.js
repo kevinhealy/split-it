@@ -10,14 +10,12 @@ import Splitit from '../utils/splitit'
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
 `
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   display: flex;
 `
 const TopArea = styled.div`
