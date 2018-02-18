@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import colors from '../styles/colors'
@@ -47,13 +48,26 @@ const SearchButton = styled.div`
 `
 
 class AddressSearch extends React.Component {
+  static propTypes = {
+    isSearching: PropTypes.bool.isRequired,
+    searchSuccessful: PropTypes.bool.isRequired,
+    currentAddress: PropTypes.string,
+  }
+  static defaultProps = {
+    currentAddress: '',
+  }
+
   render() {
     return (
       <Container>
         <PaddingContainer>
-          <Input />
+          <Input
+            placeholder="Address of Existing Split It Contract"
+          />
           <InputButtonContainer>
-            <SearchButton>Search</SearchButton>
+            <SearchButton>
+              Search
+            </SearchButton>
           </InputButtonContainer>
         </PaddingContainer>
       </Container>

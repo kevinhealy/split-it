@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import AddressSearch from './AddressSearch'
@@ -41,6 +42,29 @@ const ViewArea = styled.div`
   border: 1px solid blue;
 `
 class View extends Component {
+  static propTypes = {
+    web3: PropTypes.object,
+    isConnected: PropTypes.bool.isRequired,
+  }
+  static defaultProps = {
+    web3: {}
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      searchSuccessful: false,
+      isSearching: false,
+      targetContractAddress: '',
+      contractObject: {},
+    }
+  }
+
+  handleSearch = (targetAddress) => {
+
+  }
+
   render() {
     return (
       <Container>

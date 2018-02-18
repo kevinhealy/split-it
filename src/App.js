@@ -128,7 +128,12 @@ class App extends Component {
                 isConnected={this.state.isConnected}
               />
             }/>
-            <Route path="/view" component={View}/>
+            <Route path="/view" render={() =>
+              <View
+                web3={this.state.web3}
+                isConnected={this.state.isConnected}
+              />
+            }/>
           </RoutesContainer>
         </AppContainer>
       </Router>
