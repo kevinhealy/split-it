@@ -12,11 +12,9 @@ const Container = styled.div`
   justify-content: center;
 `
 const PaddingContainer = styled.div`
-  width: 95%;
+  height: 80%;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70%;
 `
 const InputContainer = styled.div`
   flex: 4 0;
@@ -33,7 +31,7 @@ const Input = styled.input`
 `
 const LockedInput = styled.div`
   display: flex;
-  width: 70vw;
+  width: 80vw;
   height: 100%;
   align-items: center;
   color: ${colors.default_text};

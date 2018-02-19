@@ -13,7 +13,7 @@ const Container = styled.div`
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 99%;
+  width: 95%;
   flex: 1 0;
   align-items: center;
   justify-content: center;
@@ -34,11 +34,11 @@ const TitleContainer = styled.div`
 `
 const Title = styled.div`
   display: flex;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: 600;
   flex-direction: row;
   align-items: center;
-  width: 95%;
+  width: 100%;
   justify-content: space-between;
   color: white;
 `
@@ -46,6 +46,7 @@ const ViewArea = styled.div`
   display: flex;
   flex: 12 0;
   width: 100%;
+  border: 1px solid red;
 `
 class View extends Component {
   static propTypes = {
