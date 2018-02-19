@@ -117,7 +117,7 @@ class App extends Component {
                 to="/view"
                 activeStyle={ activeStyle }
               >
-                Find
+                View
               </NavButton>
             </NavButtonContainer>
           </Header>
