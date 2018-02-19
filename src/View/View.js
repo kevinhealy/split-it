@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import AddressSearch from './AddressSearch'
+import ViewAddressesPane from './ViewAddressesPane'
 
 const Container = styled.div`
   display: flex;
@@ -66,7 +67,6 @@ class View extends Component {
       searchSuccessful: false,
       isSearching: false,
       targetContractAddress: '',
-      contractObject: {},
     }
   }
 
@@ -100,7 +100,7 @@ class View extends Component {
             handleSearch={this.handleSearch}
           />
           <ViewArea>
-
+            <ViewAddressesPane />
           </ViewArea>
         </PaddingContainer>
       </Container>
