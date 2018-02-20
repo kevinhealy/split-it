@@ -1,16 +1,16 @@
 export default {
 
+	container: '#2A2A2A',
+
 	navbar_bg: '#2B2D42',
 	navbar_text: '#FFFFFF',
-	// navbar_text: '#A9A9A9',
 	navbar_selection_text: '#FFFFFF',
-	// navbar_selection_text: '#A9A9A9',
 	navbar_selection_bg: '#353851',
 
 	default_text: '#141416',
 
-	address_bg_dark: '#cecece',
-	address_bg_light: '#F3F3F3',
+	address_bg_dark: '#D8DCDD',
+	address_bg_light: '#ECF0F1',
 
 	button_background: '#6FBCF6',
 	button_stroke: '#326E9C',
