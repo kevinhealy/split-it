@@ -48,6 +48,7 @@ const SaveButton = styled.div`
   display: flex;
   flex: 1 0;
   height: 100%;
+  text-align: center;
   background-color: ${props => props.isvalid ? colors.button_background : colors.button_disabled_bg};
   justify-content: center;
   align-items: center;
@@ -152,7 +153,7 @@ class Address extends React.Component {
               >
                 {
                   isValid ?
-                  'Save' : 'Invalid'
+                  'Save' : 'Invalid Address'
                 }
               </SaveButton>
             </ButtonContainer>

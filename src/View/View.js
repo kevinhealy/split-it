@@ -82,6 +82,21 @@ class View extends Component {
     this.getContract()
   }
 
+  validateAddress = (address) => {
+    const {web3} = this.props.web3
+    return new Promise((resolve, reject) => {
+      if (web3.utils.isAddress(address)) {
+        web3.eth.getCode(address, (err, res) => {
+          if (err) return reject()
+          if (res === '0x') return reject()
+          resolve()
+        })
+      } else {
+        reject()
+      }
+    })
+  }
+
   render() {
     return (
       <Container>
@@ -99,6 +114,7 @@ class View extends Component {
             isSearching={this.state.isSearching}
             searchSuccessful={this.state.searchSuccessful}
             handleSearch={this.handleSearch}
+            validateAddress={this.validateAddress}
           />
           <ViewArea>
             <ViewAddressesPane />

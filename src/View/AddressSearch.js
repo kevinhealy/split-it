@@ -52,7 +52,8 @@ const SearchButton = styled.div`
   display: flex;
   flex: 1 0;
   height: 100%;
-  background-color: ${colors.button_background};
+  text-align: center;
+  background-color: ${props => props.isvalid ? colors.button_background : colors.button_disabled_bg};
   justify-content: center;
   align-items: center;
   border-radius: 0 5px 5px 0;
@@ -75,6 +76,7 @@ class AddressSearch extends React.Component {
   static propTypes = {
     isSearching: PropTypes.bool.isRequired,
     searchSuccessful: PropTypes.bool.isRequired,
+    validateAddress: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -82,6 +84,7 @@ class AddressSearch extends React.Component {
     this.state = {
       targetAddress: '',
       addressLocked: false,
+      isValid: false,
     }
   }
 
@@ -93,8 +96,21 @@ class AddressSearch extends React.Component {
     this.props.handleSearch(this.state.targetAddress)
   }
 
+  handleChange = (e) => {
+    const { validateAddress } = this.props
+    this.setState({targetAddress: e.target.value})
+    validateAddress(e.target.value)
+    .then(() => {
+      this.setState({isValid: true})
+    })
+    .catch(() => {
+      this.setState({isValid: false})
+    })
+  }
+
   render() {
     console.log('state:',this.state)
+    const {isValid, targetAddress} = this.state
     return (
       <Container>
         <PaddingContainer>
@@ -120,9 +136,11 @@ class AddressSearch extends React.Component {
                   <EditSvg />
                 </EditButton> :
                 <SearchButton
-                  onClick={this.handleSearch}
+                  onClick={() => isValid ? this.handleSearch() : ''}
                 >
-                  Search
+                  {
+                    isValid || targetAddress.length < 1 ? 'Search' : 'Invalid Address'
+                  }
                 </SearchButton>
             }
           </InputButtonContainer>
