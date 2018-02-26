@@ -128,6 +128,10 @@ class Create extends Component {
     this.setState({ addresses })
   }
 
+  validateAddress = (address) => {
+
+  }
+
   render() {
     return (
       <Container>
@@ -154,6 +158,7 @@ class Create extends Component {
               addAddress={ this.handleAddAddress }
               saveAddress={ this.saveAddress }
               handleDelete={ this.handleDelete }
+              validateAddress={ this.validateAddress }
             />
           </AddressesArea>
         </PaddingContainer>

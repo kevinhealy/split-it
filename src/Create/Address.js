@@ -100,6 +100,7 @@ class Address extends React.Component {
     value: PropTypes.string.isRequired,
     saveAddress: PropTypes.func.isRequired,
     isDark: PropTypes.bool.isRequired,
+    validateAddress: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -107,6 +108,7 @@ class Address extends React.Component {
     this.state = {
       editing: true,
       value: '',
+      validAddresss: false,
     }
   }
 
@@ -114,6 +116,10 @@ class Address extends React.Component {
     const { id, saveAddress } = this.props
     saveAddress(id, this.state.value)
     this.setState({ editing: false })
+  }
+
+  handleChange = (e) => {
+    const { validateAddress } = this.props
   }
 
   render() {
