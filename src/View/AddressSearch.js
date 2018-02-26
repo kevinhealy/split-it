@@ -27,7 +27,7 @@ const Input = styled.input`
   border-radius: 5px 0 0 5px;
   height: 100%;
   padding: 0 5px;
-  border: 1px solid gray;
+  border: 1px solid ${props => props.isempty ? 'grey' : props.isvalid ? 'green' : 'red'};
 `
 const LockedInput = styled.div`
   display: flex;
@@ -84,7 +84,7 @@ class AddressSearch extends React.Component {
     this.state = {
       targetAddress: '',
       addressLocked: false,
-      isValid: false,
+      isValid: true,
     }
   }
 
@@ -99,17 +99,20 @@ class AddressSearch extends React.Component {
   handleChange = (e) => {
     const { validateAddress } = this.props
     this.setState({targetAddress: e.target.value})
-    validateAddress(e.target.value)
-    .then(() => {
+    if (e.target.value.length < 1) {
       this.setState({isValid: true})
-    })
-    .catch(() => {
-      this.setState({isValid: false})
-    })
+    } else {
+      validateAddress(e.target.value)
+      .then(() => {
+        this.setState({isValid: true})
+      })
+      .catch(() => {
+        this.setState({isValid: false})
+      })
+    }
   }
 
   render() {
-    console.log('state:',this.state)
     const {isValid, targetAddress} = this.state
     return (
       <Container>
@@ -125,7 +128,9 @@ class AddressSearch extends React.Component {
                 <Input
                   placeholder="Address of Existing Split It Contract"
                   value={this.state.targetAddress}
-                  onChange={e => this.setState({targetAddress: e.target.value})}
+                  onChange={ this.handleChange }
+                  isvalid={ isValid }
+                  isempty={ targetAddress.length < 1 }
                 />
             }
           </InputContainer>
@@ -137,10 +142,9 @@ class AddressSearch extends React.Component {
                 </EditButton> :
                 <SearchButton
                   onClick={() => isValid ? this.handleSearch() : ''}
+                  isvalid={ isValid }
                 >
-                  {
-                    isValid || targetAddress.length < 1 ? 'Search' : 'Invalid Address'
-                  }
+                  Search
                 </SearchButton>
             }
           </InputButtonContainer>
