@@ -41,10 +41,11 @@ class AddressesPane extends React.Component {
     addresses: PropTypes.object.isRequired,
     saveAddress: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
+    validateAddress: PropTypes.func.isRequired,
   }
 
   renderAddresses = () => {
-    const { addresses, saveAddress, handleDelete } = this.props
+    const { addresses, saveAddress, handleDelete, validateAddress } = this.props
     let isDark = false;
     return Object.keys(addresses).map(id => {
       isDark = !isDark
@@ -56,6 +57,7 @@ class AddressesPane extends React.Component {
           value={ addresses[id].address }
           saveAddress={ saveAddress }
           handleDelete={ handleDelete }
+          validateAddress={ validateAddress }
         />
       )
     })

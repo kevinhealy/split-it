@@ -36,7 +36,7 @@ const Input = styled.input`
   font-size: 13px;
   border-radius: 5px 0 0 5px;
   padding: 0 5px;
-  border: 1px solid gray;
+  border: 1px solid ${props => props.isvalid ? 'green' : 'gray'};
 `
 const ButtonContainer = styled.div`
   flex: 1 0;
@@ -48,7 +48,7 @@ const SaveButton = styled.div`
   display: flex;
   flex: 1 0;
   height: 100%;
-  background-color: ${colors.button_background};
+  background-color: ${props => props.isvalid ? colors.button_background : colors.button_disabled_bg};
   justify-content: center;
   align-items: center;
   border-radius: 0 5px 5px 0;
@@ -100,6 +100,7 @@ class Address extends React.Component {
     value: PropTypes.string.isRequired,
     saveAddress: PropTypes.func.isRequired,
     isDark: PropTypes.bool.isRequired,
+    validateAddress: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -107,6 +108,7 @@ class Address extends React.Component {
     this.state = {
       editing: true,
       value: '',
+      isValid: false,
     }
   }
 
@@ -116,7 +118,18 @@ class Address extends React.Component {
     this.setState({ editing: false })
   }
 
+  handleChange = (e) => {
+    const { validateAddress } = this.props
+    this.setState({value: e.target.value})
+    if (validateAddress(e.target.value)) {
+      this.setState({isValid: true})
+    } else {
+      this.setState({isValid: false})
+    }
+  }
+
   render() {
+    const { isValid } = this.state
     if (this.state.editing) {
       return (
         <Container isdark={ this.props.isDark }>
@@ -126,14 +139,19 @@ class Address extends React.Component {
                 defaultValue={ this.state.value }
                 placeholder="Input a valid ethereum address"
                 disabled={ !this.state.editing }
-                onChange={ e => this.setState({ value: e.target.value })}
+                onChange={ this.handleChange }
+                isvalid={ isValid }
               />
             </InputContainer>
             <ButtonContainer>
               <SaveButton
-                onClick={ this.handleSave }
+                onClick={ () => isValid ? this.handleSave() : '' }
+                isvalid={ isValid }
               >
-                Save
+                {
+                  isValid ?
+                  'Save' : 'Invalid'
+                }
               </SaveButton>
             </ButtonContainer>
           </InnerContainer>

@@ -79,6 +79,7 @@ class View extends Component {
       searchSuccessful: true,
       targetContractAddress: targetAddress,
     })
+    this.getContract()
   }
 
   render() {
