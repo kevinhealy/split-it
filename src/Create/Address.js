@@ -36,7 +36,7 @@ const Input = styled.input`
   font-size: 13px;
   border-radius: 5px 0 0 5px;
   padding: 0 5px;
-  border: 1px solid ${props => props.isvalid ? 'green' : 'gray'};
+  border: 1px solid ${props => props.isempty ? 'grey' : props.isvalid ? 'green' : 'red'};
 `
 const ButtonContainer = styled.div`
   flex: 1 0;
@@ -109,7 +109,7 @@ class Address extends React.Component {
     this.state = {
       editing: true,
       value: '',
-      isValid: false,
+      isValid: true,
     }
   }
 
@@ -122,13 +122,17 @@ class Address extends React.Component {
   handleChange = (e) => {
     const { validateAddress } = this.props
     this.setState({value: e.target.value})
-    validateAddress(e.target.value)
-    .then(() => {
+    if (e.target.value.length < 1) {
       this.setState({isValid: true})
-    })
-    .catch(() => {
-      this.setState({isValid: false})
-    })
+    } else {
+      validateAddress(e.target.value)
+      .then(() => {
+        this.setState({isValid: true})
+      })
+      .catch(() => {
+        this.setState({isValid: false})
+      })
+    }
   }
 
   render() {
@@ -144,6 +148,7 @@ class Address extends React.Component {
                 disabled={ !this.state.editing }
                 onChange={ this.handleChange }
                 isvalid={ isValid }
+                isempty={ this.state.value.length < 1 }
               />
             </InputContainer>
             <ButtonContainer>
@@ -151,10 +156,7 @@ class Address extends React.Component {
                 onClick={ () => isValid ? this.handleSave() : '' }
                 isvalid={ isValid }
               >
-                {
-                  isValid || value.length < 1 ?
-                  'Save' : 'Invalid Address'
-                }
+                Save
               </SaveButton>
             </ButtonContainer>
           </InnerContainer>
