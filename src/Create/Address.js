@@ -121,11 +121,13 @@ class Address extends React.Component {
   handleChange = (e) => {
     const { validateAddress } = this.props
     this.setState({value: e.target.value})
-    if (validateAddress(e.target.value)) {
+    validateAddress(e.target.value)
+    .then(() => {
       this.setState({isValid: true})
-    } else {
+    })
+    .catch(() => {
       this.setState({isValid: false})
-    }
+    })
   }
 
   render() {
@@ -137,7 +139,7 @@ class Address extends React.Component {
             <InputContainer>
               <Input
                 defaultValue={ this.state.value }
-                placeholder="Input a valid ethereum address"
+                placeholder="Input a valid Ethereum account address"
                 disabled={ !this.state.editing }
                 onChange={ this.handleChange }
                 isvalid={ isValid }

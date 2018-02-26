@@ -129,7 +129,18 @@ class Create extends Component {
   }
 
   validateAddress = (address) => {
-    return this.props.web3.utils.isAddress(address)
+    const { web3 } = this.props
+    return new Promise((resolve, reject) => {
+      if (web3.utils.isAddress(address)) {
+        web3.eth.getCode(address, (err, res) => {
+          if (err) return reject(err)
+          if (res.length > 3) return reject(res)
+          resolve(res)
+        })
+      } else {
+        reject()
+      }
+    })
   }
 
   render() {
