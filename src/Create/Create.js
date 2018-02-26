@@ -129,7 +129,7 @@ class Create extends Component {
   }
 
   validateAddress = (address) => {
-
+    return this.props.web3.utils.isAddress(address)
   }
 
   render() {
