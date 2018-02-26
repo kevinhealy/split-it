@@ -132,7 +132,7 @@ class Address extends React.Component {
   }
 
   render() {
-    const { isValid } = this.state
+    const { isValid, value } = this.state
     if (this.state.editing) {
       return (
         <Container isdark={ this.props.isDark }>
@@ -152,7 +152,7 @@ class Address extends React.Component {
                 isvalid={ isValid }
               >
                 {
-                  isValid ?
+                  isValid || value.length < 1 ?
                   'Save' : 'Invalid Address'
                 }
               </SaveButton>
